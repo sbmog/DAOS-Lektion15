@@ -1,4 +1,4 @@
-package petersons;
+package semaforer;
 
 public class TestBankAccount {
 

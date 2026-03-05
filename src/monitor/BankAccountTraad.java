@@ -1,11 +1,11 @@
-package petersons;
+package monitor;
 
 public class BankAccountTraad extends Thread {
 
-	private BankAccount ba;
+	private BankAccount bankAccount;
 
-	public BankAccountTraad(BankAccount ba) {
-		this.ba = ba;
+	public BankAccountTraad(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 
 	public void run() {
@@ -16,10 +16,10 @@ public class BankAccountTraad extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			ba.setBalance(100, "c");
+			bankAccount.setBalance(100, "c");
 			i++;
 		}
-		System.out.println("Balancen er: " + ba.getBalance());
+		System.out.println("Balancen er: " + bankAccount.getBalance());
 	}
 
 }

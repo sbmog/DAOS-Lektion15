@@ -1,21 +1,21 @@
-package petersons;
+package monitor;
 
 public class TestBankAccount {
 
 	public static void main(String[] args) {
-		BankAccount ba = new BankAccount();
-			BankAccountTraad bat1 = new BankAccountTraad(ba);
-			BankAccountTraad2 bat2 = new BankAccountTraad2(ba);
+		BankAccount bankAccount = new BankAccount();
+			BankAccountTraad bankAccountTraad1 = new BankAccountTraad(bankAccount);
+			BankAccountTraad2 bankAccountTraad2 = new BankAccountTraad2(bankAccount);
 			
-			bat1.start();
-			bat2.start();
+			bankAccountTraad1.start();
+			bankAccountTraad2.start();
 
 		try {
-			bat1.join();
-			bat2.join();
+			bankAccountTraad1.join();
+			bankAccountTraad2.join();
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-		System.out.println(ba.getBalance());
+		System.out.println(bankAccount.getBalance());
 		}
 }

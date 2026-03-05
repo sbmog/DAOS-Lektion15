@@ -1,20 +1,32 @@
-package petersons;
+package semaforer;
+
+import java.util.concurrent.Semaphore;
 
 public class BankAccount {
 
-	private double balance;
+    private Semaphore semaphore = new Semaphore(1);
+    private double balance;
 
-	public void setBalance(double amount, String action) {
-		if (action.equals("c")) {
-			balance = balance + amount;
-		}
-		if (action.equals("d")){
-			balance = balance - amount;
-		}
-		
-	}
+    public void setBalance(double amount, String action) {
 
-	public double getBalance() {
-		return balance;
-	}
+        try {
+            semaphore.acquire();
+
+            if (action.equals("c")) {
+                balance = balance + amount;
+            }
+            if (action.equals("d")) {
+                balance = balance - amount;
+            }
+
+            semaphore.release();
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
